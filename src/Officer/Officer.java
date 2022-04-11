@@ -6,6 +6,7 @@
 package Officer;
 
 import Admin.Admin_OfficerList;
+import java.util.Set;
 import login.Login;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -15,6 +16,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -22,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -99,13 +102,42 @@ public class Officer extends Application {
         TableColumn FristName =new TableColumn("ID");
         TableColumn SecondName =new TableColumn("Name");
         SecondName.setPrefWidth(400);
-        table.getColumns().addAll(FristName,SecondName);
-        table.setMinHeight(200);
-        ScrollBar table1HorizontalScrollBar = new ScrollBar();
-        ScrollBar table1VerticalScrollBar = new ScrollBar();
-        table1HorizontalScrollBar.setOrientation(Orientation.HORIZONTAL);
-        table.setOnScrollTo((EventHandler) table1HorizontalScrollBar);
-        section2.getChildren().addAll(H,table);
+        TableColumn tName =new TableColumn("Name");
+        TableColumn fName =new TableColumn("Name");
+        TableColumn ffName =new TableColumn("Name");
+        table.getColumns().addAll(FristName,SecondName,tName,fName,ffName);
+        table.setMinHeight(1000);
+        table.setMinWidth(900);
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(table);
+        scrollPane.pannableProperty().set(true);
+        scrollPane.fitToWidthProperty().set(true);
+        scrollPane.fitToHeightProperty().set(true);
+        scrollPane.setPrefHeight(400);
+        scrollPane.setMaxWidth(900);
+        scrollPane.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
+        scrollPane.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
+        //////////////////////////////////////////////////////////////////////////////////
+       TextField Correct=new TextField();
+        Correct.setStyle("-fx-background-radius: 30px ;");
+        Correct.setPromptText("Phone");
+        Correct.setMinWidth(10);
+        Correct.setPadding(new Insets(5, 10, 200, 10));
+        ///////////////////////////////////////////////////////////////////////////////////////
+        HBox B=new HBox(100);
+        B.setPadding(new Insets(10, 0, 0, 80));
+        Button D=new Button("Reject");
+        Button U=new Button("Accept");
+        D.setStyle("-fx-background-radius: 300px ;-fx-background-color:Red; ");
+        U.setStyle("-fx-background-radius: 300px ;-fx-background-color:Orange;");
+        D.setMinWidth(120);
+        U.setMinWidth(120);
+        D.setFont(Font.font("tahoma", FontWeight.LIGHT, 17));
+        D.setTextFill(javafx.scene.paint.Color.BLACK);
+        U.setFont(Font.font("tahoma", FontWeight.LIGHT, 17));
+        U.setTextFill(javafx.scene.paint.Color.BLACK);
+        B.getChildren().addAll(U,D);
+        section2.getChildren().addAll(H,scrollPane,B,Correct);
         //////////////////////////////////////
         all.add(section1, 0, 0);
         all.add(section2, 1, 0);
@@ -127,5 +159,4 @@ public class Officer extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
 }
