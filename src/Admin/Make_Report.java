@@ -7,6 +7,7 @@ package Admin;
 
 import login.Login;
 import Admin.Admin;
+import Admin.Make_Report;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,6 +21,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -70,6 +72,14 @@ public class Make_Report extends Application {
         
         Add_Officer.setMinSize(170, 175);
         Add_Officer.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
+        Add_Officer.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent even) {
+                Admin_Add c2=new Admin_Add();
+                S1.close();
+                c2.start(new Stage());
+            }
+        });
         
         Officers_list.setMinSize(170, 175);
         Officers_list.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
@@ -85,7 +95,14 @@ public class Make_Report extends Application {
         
         Make_report.setMinSize(170, 175);
         Make_report.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
-
+        Make_report.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent even) {
+                Make_Report c2=new Make_Report();
+                S1.close();
+                c2.start(new Stage());
+            }
+        });
         
         Logout.setMinSize(170, 175);
         Logout.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.web("#bf1f21"), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -105,34 +122,52 @@ public class Make_Report extends Application {
         
         //second section
 
-        VBox section2 = new VBox(5);
+        VBox section2 = new VBox(30);
         section2.setPrefSize(530, 500);
-        Label H=new Label("Office List");
+        Label H=new Label("Report on Family members");
         H.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC, 22));
-        H.setPadding(new Insets(5, 0, 0, 200));
+        H.setPadding(new Insets(5, 0, 0, 100));
         table.setEditable(true);
         TableColumn FristName =new TableColumn("ID");
         TableColumn SecondName =new TableColumn("Name");
         SecondName.setPrefWidth(500);
         table.getColumns().addAll(FristName,SecondName);
-        table.setMinHeight(200);
+        table.setMinHeight(1000);
+        
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(table);
+        scrollPane.pannableProperty().set(true);
+        scrollPane.fitToWidthProperty().set(true);
+        scrollPane.fitToHeightProperty().set(true);
+        scrollPane.setPrefHeight(350);
+        scrollPane.setMaxWidth(900);
+        scrollPane.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         /////searching on//////
-        Label Searching=new Label("searching on");
-        Searching.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 17));
+        HBox search=new HBox(15);
+        Label Searching=new Label("Searching on: ");
+        Searching.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 18));
         ComboBox Search=new ComboBox();
         Search.setPrefWidth(100);
+        search.setPadding(new Insets(10, 0, 0, 70));
+        search.getChildren().addAll(Searching,Search);
         /////////////Select an option to display////////////////
-        Label display=new Label("Select an option to display");
-        display.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 17));
+        HBox Display_search=new HBox(15);
+        Label display=new Label("Select an option to display: ");
+        display.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 18));
         ComboBox Select_display=new ComboBox();
         Select_display.setPrefWidth(100);
+        Display_search.setPadding(new Insets(0, 0, 20, 20));
+        Display_search.getChildren().addAll(display,Select_display);
         /////Select an option to sort on/////////////
-        Label option=new Label("Select an option to sort on");
-        display.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 17));
+        HBox option_search=new HBox(15);
+        Label option=new Label("Select an option to sort on: ");
+        option.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 18));
         ComboBox Select_option=new ComboBox();
         Select_option.setPrefWidth(100);
+        option_search.setPadding(new Insets(10, 0, 0, 20));
+        option_search.getChildren().addAll(option,Select_option);
         ////////////////////////
-        section2.getChildren().addAll(H,Searching,Search,display,Select_display,option,Select_option,table);
+        section2.getChildren().addAll(H,search,Display_search,option_search,scrollPane);
         all.add(section1, 0, 0);
         all.add(section2, 1, 0);
         all.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.web("#a5cee5"), CornerRadii.EMPTY, Insets.EMPTY)));

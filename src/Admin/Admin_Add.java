@@ -5,24 +5,27 @@
  */
 package Admin;
 
+import login.Login;
 import Admin.Admin;
-import Admin.Admin_Add_Officer;
-import Admin.Admin_OfficerList;
 import Admin.Make_Report;
-import com.sun.javafx.scene.control.skin.FXVK;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
@@ -30,9 +33,14 @@ import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import login.Login;
@@ -42,19 +50,19 @@ import login.Login;
  *
  * @author user
  */
-public class Admin_Add_Officer extends Application {
+public class Admin_Add extends Application {
     
-     Stage S1;
-    public void start(Stage add_officers_Stage) {
-        
-        HBox all = new HBox();
+    Stage S1;
+    @Override
+    public void start(Stage stage) {
+               HBox all = new HBox();
 
         
 // side btn section
         
-        VBox section1 = new VBox();       
-        section1.setPrefSize(200, 500);
-        
+       VBox section1 = new VBox();       
+        section1.setPrefSize(170, 500);
+
         
         Button Add_Officer = new Button("Add Officer");
         Button Officers_list = new Button("Officers list");
@@ -62,21 +70,19 @@ public class Admin_Add_Officer extends Application {
         Button Logout = new Button("Logout");
         
         
-        Add_Officer.setPrefSize(170, 125);
+        Add_Officer.setMinSize(170, 175);
         Add_Officer.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
         Add_Officer.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent even) {
-                Admin_Add_Officer c2=new Admin_Add_Officer();
+                Admin_Add c2=new Admin_Add();
                 S1.close();
                 c2.start(new Stage());
             }
         });
-        
-        
-        Officers_list.setPrefSize(170, 125);
+        Officers_list.setMinSize(170, 175);
         Officers_list.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
-        Officers_list.setOnAction(new EventHandler<ActionEvent>() {
+         Officers_list.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent even) {
                 Admin_OfficerList c2=new Admin_OfficerList();
@@ -84,8 +90,9 @@ public class Admin_Add_Officer extends Application {
                 c2.start(new Stage());
             }
         });
+
         
-        Make_report.setPrefSize(170, 125);
+        Make_report.setMinSize(170, 175);
         Make_report.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
         Make_report.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -96,11 +103,12 @@ public class Admin_Add_Officer extends Application {
             }
         });
         
-        Logout.setPrefSize(170, 150);
+        
+        Logout.setMinSize(170, 175);
         Logout.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.web("#bf1f21"), CornerRadii.EMPTY, Insets.EMPTY)));
         Logout.setBorder(new Border(new BorderStroke((javafx.scene.paint.Color.web("#79b5d9")), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         Logout.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
-        Logout.setOnAction(new EventHandler<ActionEvent>() {
+       Logout.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent even) {
                 Login c2=new Login();
@@ -244,22 +252,20 @@ public class Admin_Add_Officer extends Application {
         
         all.getChildren().addAll(section1,section2);
         all.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.web("#a5cee5"), CornerRadii.EMPTY, Insets.EMPTY)));
-
+        Scene scene = new Scene(all,700,700);           
+        stage.setScene(scene);;
+        stage.setTitle("Admin Screen");
+        stage.setResizable(false);
         
-        Scene scene = new Scene(all);           
-        add_officers_Stage.setScene(scene);
-        add_officers_Stage.setMinWidth(700);
-        add_officers_Stage.setMinHeight(700);
-        add_officers_Stage.setTitle("Admin Screen");
-        add_officers_Stage.setResizable(false);
-        add_officers_Stage.show();
-        
-        S1 = add_officers_Stage;
-        
+        stage.show();
+        S1=stage;
     }
 
-   
-    public void handle(ActionEvent event) {
-        Admin_Add_Officer add_Officer_stage = new Admin_Add_Officer();
-}
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
+    
 }

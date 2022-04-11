@@ -7,6 +7,8 @@ package Admin;
 
 import login.Login;
 import Admin.Admin;
+import Admin.Make_Report;
+import java.awt.geom.Area;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,6 +22,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -72,6 +75,14 @@ public class Admin_OfficerList extends Application   {
         
         Add_Officer.setMinSize(170, 175);
         Add_Officer.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
+        Add_Officer.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent even) {
+                Admin_Add c2=new Admin_Add();
+                S1.close();
+                c2.start(new Stage());
+            }
+        });
         
         Officers_list.setMinSize(170, 175);
         Officers_list.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
@@ -87,7 +98,15 @@ public class Admin_OfficerList extends Application   {
         
         Make_report.setMinSize(170, 175);
         Make_report.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
-
+        Make_report.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent even) {
+                Make_Report c2=new Make_Report();
+                S1.close();
+                c2.start(new Stage());
+            }
+        });
+        
         
         Logout.setMinSize(170, 175);
         Logout.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.web("#bf1f21"), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -107,64 +126,89 @@ public class Admin_OfficerList extends Application   {
         
 //second section
 
-        VBox section2 = new VBox(5);
-        section2.setPrefSize(530, 500);
+        VBox section2 = new VBox(15);
+        section2.setPrefSize(600, 500);
+        VBox NameField=new VBox(15);
+        VBox PassField=new VBox(20);
+        HBox horiz=new HBox(15);
         Label H=new Label("Office List");
-        H.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC, 22));
-        H.setPadding(new Insets(5, 0, 0, 200));
+        H.setFont(Font.font("Garamond", FontWeight.BOLD, 30));
+        H.setPadding(new Insets(5, 0, 0, 250));
         table.setEditable(true);
         TableColumn FristName =new TableColumn("ID");
         TableColumn SecondName =new TableColumn("Name");
         SecondName.setPrefWidth(500);
         table.getColumns().addAll(FristName,SecondName);
-        table.setMinHeight(200);
+        table.setMinHeight(1000);
+        
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(table);
+        scrollPane.pannableProperty().set(true);
+        scrollPane.fitToWidthProperty().set(true);
+        scrollPane.fitToHeightProperty().set(true);
+        scrollPane.setPrefHeight(350);
+        scrollPane.setMaxWidth(900);
+        scrollPane.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         /////Name field//////
-        Label l1=new Label("Name");
-        l1.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 17));
+        HBox Name=new HBox(30);
+        Label l1=new Label("Name : ");
+        l1.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 16));
         TextField name =new TextField();
         name.setPromptText("Name");
         name.setStyle("-fx-background-radius: 30px ;");
         name.setMaxWidth(300);
+        Name.getChildren().addAll(l1,name);
         ///////Area////////////
-        Label l2=new Label("Area");
-        l2.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 17));
+        HBox area=new HBox(50);
+        Label l2=new Label("Area: ");
+        l2.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 16));
         ComboBox Area=new ComboBox();
-        Area.setPrefWidth(100);
+        Area.setPrefWidth(150);
+        area.getChildren().addAll(l2,Area);
         //////email //////////
-        Label email =new Label("Email");
-        email.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 17));
+        HBox Email = new HBox(40);
+        Label email =new Label("Email : ");
+        email.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 16));
         TextField user=new TextField();
         user.setStyle("-fx-background-radius: 30px ;");
         user.setPromptText("Email");
         user.setMaxWidth(300);
+        Email.getChildren().addAll(email,user);
         ////////////username/////////////
-        Label u =new Label("User Name");
-        u.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 17));
+        HBox User=new HBox(1);
+        Label u =new Label("User Name : ");
+        u.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 16));
         TextField user1=new TextField();
         user1.setStyle("-fx-background-radius: 30px ;");
         user1.setPromptText("UserName");
         user1.setMaxWidth(300);
+        User.getChildren().addAll(u,user1);
         /////////// password /////////////
-        Label pass =new Label("Password");
-        pass.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 17));
+        HBox password =new HBox(10);
+        Label pass =new Label("Password : ");
+        pass.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 16));
         PasswordField P=new PasswordField();
         P.setMaxWidth(300);
         P.setStyle("-fx-background-radius: 30px ;");
         P.setPromptText("Password");
+        password.getChildren().addAll(pass,P);
         ///////////sex /////////////
-        HBox S=new HBox(20);
+        HBox S=new HBox(50);
+        Label s =new Label("SEX :");
         ToggleGroup tg = new ToggleGroup();
-        RadioButton Male=new RadioButton("Male");
+        RadioButton Male=new RadioButton("Male: ");
         RadioButton Female=new RadioButton("Female");
         tg.getToggles().addAll(Male,Female);
-        S.getChildren().addAll(Male,Female);
+        S.getChildren().addAll(s,Male,Female);
         ///////////////////phone/////////////
-        Label ph=new Label("Phone");
+        HBox mobile =new HBox(30);
+        Label ph=new Label("Phone : ");
         ph.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 17));
         TextField Phone=new TextField();
         Phone.setStyle("-fx-background-radius: 30px ;");
         Phone.setPromptText("Phone");
         Phone.setMaxWidth(300);
+        mobile.getChildren().addAll(ph,Phone);
         //////////////////button///////
         HBox B=new HBox(100);
         B.setPadding(new Insets(10, 0, 0, 80));
@@ -174,19 +218,22 @@ public class Admin_OfficerList extends Application   {
         U.setStyle("-fx-background-radius: 300px ;-fx-background-color:Orange;");
         D.setMinWidth(120);
         U.setMinWidth(120);
-        D.setFont(Font.font("tahoma", FontWeight.BOLD, 14));
+        D.setFont(Font.font("tahoma", FontWeight.BOLD, 15.5));
         D.setTextFill(javafx.scene.paint.Color.BLACK);
-        U.setFont(Font.font("tahoma", FontWeight.BOLD, 14));
+        U.setFont(Font.font("tahoma", FontWeight.BOLD, 15.5));
         U.setTextFill(javafx.scene.paint.Color.BLACK);
         B.getChildren().addAll(D,U);
         ////////////////////////
-        section2.getChildren().addAll(H,table,l1,name,l2,Area,email,user,u,user1,pass,P,S,ph,Phone,B);
+        NameField.getChildren().addAll(Name,area,Email,User);
+        PassField.getChildren().addAll(S,mobile,password);
+        horiz.getChildren().addAll(NameField,PassField);
+        section2.getChildren().addAll(H,scrollPane,horiz,B);
         all.add(section1, 0, 0);
         all.add(section2, 1, 0);
         all.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.web("#a5cee5"), CornerRadii.EMPTY, Insets.EMPTY)));
 
         
-        Scene scene = new Scene(all,700,700);           
+        Scene scene = new Scene(all,800,700);           
         stage.setScene(scene);;
         stage.setTitle("Admin Screen");
         stage.setResizable(false);

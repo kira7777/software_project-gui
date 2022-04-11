@@ -67,7 +67,7 @@ public class Admin extends Application  {
         Add_Officer.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent even) {
-                Admin_Add_Officer c2=new Admin_Add_Officer();
+                Admin_Add c2=new Admin_Add();
                 S1.close();
                 c2.start(new Stage());
             }
@@ -87,7 +87,14 @@ public class Admin extends Application  {
         
         Make_report.setPrefSize(170, 125);
         Make_report.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
-
+        Make_report.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent even) {
+                Make_Report c2=new Make_Report();
+                S1.close();
+                c2.start(new Stage());
+            }
+        });
         
         Logout.setPrefSize(170, 150);
         Logout.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.web("#bf1f21"), CornerRadii.EMPTY, Insets.EMPTY)));

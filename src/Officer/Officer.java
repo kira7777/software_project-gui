@@ -27,6 +27,7 @@ import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
@@ -46,6 +47,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import login.Login;
 
@@ -57,6 +59,7 @@ import login.Login;
 public class Officer extends Application {
     Stage S1;
     TableView table=new TableView();
+    Text t=new Text();;
     @Override
     public void start(Stage stage) {
         GridPane all = new GridPane();
@@ -93,11 +96,11 @@ public class Officer extends Application {
         section1.getChildren().addAll(view_request,Logout);
         
         //////////////////////////////////////
-                VBox section2 = new VBox(5);
+        VBox section2 = new VBox(6);
         section2.setPrefSize(530, 500);
         Label H=new Label("New Requests");
-        H.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC, 22));
-        H.setPadding(new Insets(5, 0, 0, 200));
+        H.setFont(Font.font("Garamond", FontWeight.BOLD, 30));
+        H.setPadding(new Insets(5, 0, 0, 180));
         table.setEditable(true);
         TableColumn FristName =new TableColumn("ID");
         TableColumn SecondName =new TableColumn("Name");
@@ -113,31 +116,60 @@ public class Officer extends Application {
         scrollPane.pannableProperty().set(true);
         scrollPane.fitToWidthProperty().set(true);
         scrollPane.fitToHeightProperty().set(true);
-        scrollPane.setPrefHeight(400);
+        scrollPane.setPrefHeight(350);
         scrollPane.setMaxWidth(900);
         scrollPane.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollPane.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
         //////////////////////////////////////////////////////////////////////////////////
-       TextField Correct=new TextField();
-        Correct.setStyle("-fx-background-radius: 30px ;");
-        Correct.setPromptText("Phone");
-        Correct.setMinWidth(10);
-        Correct.setPadding(new Insets(5, 10, 200, 10));
+        TextArea Correct=new TextArea();
+        //Correct.setStyle("-fx-background-radius: 30px ;");
+        Correct.setPromptText("Message");
+        Correct.setMaxHeight(220);
+        Correct.setMaxWidth(520);
+        Correct.setWrapText(true);
+        Correct.setVisible(false);
         ///////////////////////////////////////////////////////////////////////////////////////
+        VBox SEND=new VBox(10);
+        Button S=new Button("Send");
+        S.setFont(Font.font("tahoma", FontWeight.LIGHT, 16));
+        S.setTextFill(javafx.scene.paint.Color.BLACK);
+        S.setStyle("-fx-background-radius: 300px ;");
+        S.setMinWidth(120);
+        S.setOnAction(new EventHandler<ActionEvent>() {
+        @Override
+         public void handle(ActionEvent even) {
+             Correct.setVisible(false);
+             S.setVisible(false);
+               t.setText("Message has been sent");
+               t.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC, 20));
+               SEND.setPadding(new Insets(0, 0, 0, 160));
+         }
+      });
+        SEND.setPadding(new Insets(0, 0, 0, 200));
+        SEND.getChildren().addAll(t,S);
+        SEND.setVisible(false);
+        //////////////////////////////////////////////////////////////
         HBox B=new HBox(100);
-        B.setPadding(new Insets(10, 0, 0, 80));
-        Button D=new Button("Reject");
-        Button U=new Button("Accept");
-        D.setStyle("-fx-background-radius: 300px ;-fx-background-color:Red; ");
-        U.setStyle("-fx-background-radius: 300px ;-fx-background-color:Orange;");
-        D.setMinWidth(120);
-        U.setMinWidth(120);
-        D.setFont(Font.font("tahoma", FontWeight.LIGHT, 17));
-        D.setTextFill(javafx.scene.paint.Color.BLACK);
-        U.setFont(Font.font("tahoma", FontWeight.LIGHT, 17));
-        U.setTextFill(javafx.scene.paint.Color.BLACK);
-        B.getChildren().addAll(U,D);
-        section2.getChildren().addAll(H,scrollPane,B,Correct);
+        B.setPadding(new Insets(10, 0, 10, 80));
+        Button R=new Button("Reject");
+        Button A=new Button("Accept");
+        R.setStyle("-fx-background-radius: 300px ;-fx-background-color:Red; ");
+        A.setStyle("-fx-background-radius: 300px ;-fx-background-color:Orange;");
+        R.setMinWidth(120);
+        A.setMinWidth(120);
+        R.setFont(Font.font("tahoma", FontWeight.LIGHT, 17));
+        R.setTextFill(javafx.scene.paint.Color.BLACK);
+        A.setFont(Font.font("tahoma", FontWeight.LIGHT, 17));
+        A.setTextFill(javafx.scene.paint.Color.BLACK);
+        R.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent even) {
+                Correct.setVisible(true);
+                SEND.setVisible(true);
+            }
+        });
+        B.getChildren().addAll(A,R);
+        section2.getChildren().addAll(H,scrollPane,B,Correct ,  SEND);
         //////////////////////////////////////
         all.add(section1, 0, 0);
         all.add(section2, 1, 0);
