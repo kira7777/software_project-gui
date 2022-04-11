@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Admin;
+package Officer;
 
+import Admin.Admin_OfficerList;
 import login.Login;
-import Admin.Admin;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -20,6 +21,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -44,16 +46,17 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import login.Login;
 
+
 /**
  *
  * @author user
  */
-public class Make_Report extends Application {
-            Stage S1;
-        TableView table=new TableView();
+public class Officer extends Application {
+    Stage S1;
+    TableView table=new TableView();
     @Override
     public void start(Stage stage) {
-               GridPane all = new GridPane();
+        GridPane all = new GridPane();
         all.setHgap(10);
         
 // side btn section
@@ -62,35 +65,18 @@ public class Make_Report extends Application {
         section1.setPrefSize(170, 500);
 
         
-        Button Add_Officer = new Button("Add Officer");
-        Button Officers_list = new Button("Officers list");
-        Button Make_report = new Button("Make a report");
+        Button view_request = new Button("View New\n" +
+"Requests");
         Button Logout = new Button("Logout");
         
         
-        Add_Officer.setMinSize(170, 175);
-        Add_Officer.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
-        
-        Officers_list.setMinSize(170, 175);
-        Officers_list.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
-         Officers_list.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent even) {
-                Admin_OfficerList c2=new Admin_OfficerList();
-                S1.close();
-                c2.start(new Stage());
-            }
-        });
-
-        
-        Make_report.setMinSize(170, 175);
-        Make_report.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
-
-        
-        Logout.setMinSize(170, 175);
+        view_request.setMinSize(170, 350);
+        view_request.setFont(Font.font("tahoma", FontWeight.BOLD, 17));
+     
+        Logout.setMinSize(170, 350);
         Logout.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.web("#bf1f21"), CornerRadii.EMPTY, Insets.EMPTY)));
         Logout.setBorder(new Border(new BorderStroke((javafx.scene.paint.Color.web("#79b5d9")), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-        Logout.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
+        Logout.setFont(Font.font("tahoma", FontWeight.BOLD, 17));
        Logout.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent even) {
@@ -101,51 +87,38 @@ public class Make_Report extends Application {
         });
 
         
-        section1.getChildren().addAll(Add_Officer,Officers_list,Make_report,Logout);
+        section1.getChildren().addAll(view_request,Logout);
         
-        //second section
-
-        VBox section2 = new VBox(5);
+        //////////////////////////////////////
+                VBox section2 = new VBox(5);
         section2.setPrefSize(530, 500);
-        Label H=new Label("Office List");
+        Label H=new Label("New Requests");
         H.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC, 22));
         H.setPadding(new Insets(5, 0, 0, 200));
         table.setEditable(true);
         TableColumn FristName =new TableColumn("ID");
         TableColumn SecondName =new TableColumn("Name");
-        SecondName.setPrefWidth(500);
+        SecondName.setPrefWidth(400);
         table.getColumns().addAll(FristName,SecondName);
         table.setMinHeight(200);
-        /////searching on//////
-        Label Searching=new Label("searching on");
-        Searching.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 17));
-        ComboBox Search=new ComboBox();
-        Search.setPrefWidth(100);
-        /////////////Select an option to display////////////////
-        Label display=new Label("Select an option to display");
-        display.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 17));
-        ComboBox Select_display=new ComboBox();
-        Select_display.setPrefWidth(100);
-        /////Select an option to sort on/////////////
-        Label option=new Label("Select an option to sort on");
-        display.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 17));
-        ComboBox Select_option=new ComboBox();
-        Select_option.setPrefWidth(100);
-        ////////////////////////
-        section2.getChildren().addAll(H,Searching,Search,display,Select_display,option,Select_option,table);
+        ScrollBar table1HorizontalScrollBar = new ScrollBar();
+        ScrollBar table1VerticalScrollBar = new ScrollBar();
+        table1HorizontalScrollBar.setOrientation(Orientation.HORIZONTAL);
+        table.setOnScrollTo((EventHandler) table1HorizontalScrollBar);
+        section2.getChildren().addAll(H,table);
+        //////////////////////////////////////
         all.add(section1, 0, 0);
         all.add(section2, 1, 0);
         all.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.web("#a5cee5"), CornerRadii.EMPTY, Insets.EMPTY)));
 
         
         Scene scene = new Scene(all,700,700);           
-        stage.setScene(scene);;
-        stage.setTitle("Admin Screen");
+        stage.setScene(scene);
+        stage.setTitle("Officer Screen");
         stage.setResizable(false);
         
         stage.show();
         S1=stage;
-        
     }
 
     /**
