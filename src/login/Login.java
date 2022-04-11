@@ -6,6 +6,8 @@
 package login;
 
 import Admin.Admin;
+import Admin.Admin_Add;
+import Officer.Officer;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -34,14 +36,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.omg.PortableServer.IdAssignmentPolicyValue;
 
 /**
  *
  * @author user
  */
-public class Login extends Application implements EventHandler<ActionEvent> {
+public class Login extends Application{
     Stage S1;
+    String t;
     @Override
     public void start(Stage primaryStage) {
          //create login title
@@ -110,7 +115,21 @@ public class Login extends Application implements EventHandler<ActionEvent> {
         log.setLayoutY(320);
         log.setLayoutX(135);
         log.setPrefWidth(100);
-        log.setOnAction(this);
+        log.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent even) {
+        t=user.getText();
+      if(t.equals("Admin")){  
+      Admin c1=new Admin();
+      S1.close();
+      c1.start(new Stage());
+            }
+      else if(t.equals("officer")){
+      Officer c1=new Officer();
+      S1.close();
+      c1.start(new Stage());  
+      }
+            }});
         v2.getChildren().addAll(email,user,pass,P,log,img);
         gp.add(v2, 1, 0);
 
@@ -129,12 +148,4 @@ public class Login extends Application implements EventHandler<ActionEvent> {
     public static void main(String[] args) {
         launch(args);
     }
-
-    @Override
-    public void handle(ActionEvent event) {  
-      Admin c1=new Admin();
-      S1.close();
-      c1.start(new Stage());
-    }
-    
 }

@@ -78,7 +78,15 @@ public class Officer extends Application {
         
         view_request.setMinSize(170, 350);
         view_request.setFont(Font.font("tahoma", FontWeight.BOLD, 17));
-     
+     view_request.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent even) {
+                Officer_View c2=new Officer_View();
+                S1.close();
+                c2.start(new Stage());
+            }
+        });
+        
         Logout.setMinSize(170, 350);
         Logout.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.web("#bf1f21"), CornerRadii.EMPTY, Insets.EMPTY)));
         Logout.setBorder(new Border(new BorderStroke((javafx.scene.paint.Color.web("#79b5d9")), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
@@ -98,78 +106,21 @@ public class Officer extends Application {
         //////////////////////////////////////
         VBox section2 = new VBox(6);
         section2.setPrefSize(530, 500);
-        Label H=new Label("New Requests");
-        H.setFont(Font.font("Garamond", FontWeight.BOLD, 30));
-        H.setPadding(new Insets(5, 0, 0, 180));
-        table.setEditable(true);
-        TableColumn FristName =new TableColumn("ID");
-        TableColumn SecondName =new TableColumn("Name");
-        SecondName.setPrefWidth(400);
-        TableColumn tName =new TableColumn("Name");
-        TableColumn fName =new TableColumn("Name");
-        TableColumn ffName =new TableColumn("Name");
-        table.getColumns().addAll(FristName,SecondName,tName,fName,ffName);
-        table.setMinHeight(1000);
-        table.setMinWidth(900);
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(table);
-        scrollPane.pannableProperty().set(true);
-        scrollPane.fitToWidthProperty().set(true);
-        scrollPane.fitToHeightProperty().set(true);
-        scrollPane.setPrefHeight(350);
-        scrollPane.setMaxWidth(900);
-        scrollPane.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
-        scrollPane.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
-        //////////////////////////////////////////////////////////////////////////////////
-        TextArea Correct=new TextArea();
-        //Correct.setStyle("-fx-background-radius: 30px ;");
-        Correct.setPromptText("Message");
-        Correct.setMaxHeight(220);
-        Correct.setMaxWidth(520);
-        Correct.setWrapText(true);
-        Correct.setVisible(false);
-        ///////////////////////////////////////////////////////////////////////////////////////
-        VBox SEND=new VBox(10);
-        Button S=new Button("Send");
-        S.setFont(Font.font("tahoma", FontWeight.LIGHT, 16));
-        S.setTextFill(javafx.scene.paint.Color.BLACK);
-        S.setStyle("-fx-background-radius: 300px ;");
-        S.setMinWidth(120);
-        S.setOnAction(new EventHandler<ActionEvent>() {
-        @Override
-         public void handle(ActionEvent even) {
-             Correct.setVisible(false);
-             S.setVisible(false);
-               t.setText("Message has been sent");
-               t.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC, 20));
-               SEND.setPadding(new Insets(0, 0, 0, 160));
-         }
-      });
-        SEND.setPadding(new Insets(0, 0, 0, 200));
-        SEND.getChildren().addAll(t,S);
-        SEND.setVisible(false);
-        //////////////////////////////////////////////////////////////
-        HBox B=new HBox(100);
-        B.setPadding(new Insets(10, 0, 10, 80));
-        Button R=new Button("Reject");
-        Button A=new Button("Accept");
-        R.setStyle("-fx-background-radius: 300px ;-fx-background-color:Red; ");
-        A.setStyle("-fx-background-radius: 300px ;-fx-background-color:Orange;");
-        R.setMinWidth(120);
-        A.setMinWidth(120);
-        R.setFont(Font.font("tahoma", FontWeight.LIGHT, 17));
-        R.setTextFill(javafx.scene.paint.Color.BLACK);
-        A.setFont(Font.font("tahoma", FontWeight.LIGHT, 17));
-        A.setTextFill(javafx.scene.paint.Color.BLACK);
-        R.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent even) {
-                Correct.setVisible(true);
-                SEND.setVisible(true);
-            }
-        });
-        B.getChildren().addAll(A,R);
-        section2.getChildren().addAll(H,scrollPane,B,Correct ,  SEND);
+               section2.setPrefSize(530, 500);
+       
+        
+        ImageView assitant_Image = new ImageView("Picture1.png");
+        assitant_Image.setFitHeight(250);
+        assitant_Image.setFitWidth(250);
+        
+        
+        Label word =new Label("welcome in Officerstrator part \n\n click any button to start work");
+        word.setFont(Font.font("Garamond", FontWeight.BOLD, 30));
+        word.setTextFill(javafx.scene.paint.Color.BLACK);
+        word.setPadding(new Insets(20));
+        
+        section2.getChildren().addAll(assitant_Image,word);
+        section2.setAlignment(Pos.CENTER);
         //////////////////////////////////////
         all.add(section1, 0, 0);
         all.add(section2, 1, 0);

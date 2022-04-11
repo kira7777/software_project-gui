@@ -62,7 +62,7 @@ public class Admin extends Application  {
         Button Logout = new Button("Logout");
         
         
-        Add_Officer.setPrefSize(170, 125);
+        Add_Officer.setPrefSize(170, 175);
         Add_Officer.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
         Add_Officer.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -74,7 +74,7 @@ public class Admin extends Application  {
         });
         
         
-        Officers_list.setPrefSize(170, 125);
+        Officers_list.setPrefSize(170, 175);
         Officers_list.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
         Officers_list.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -85,7 +85,7 @@ public class Admin extends Application  {
             }
         });
         
-        Make_report.setPrefSize(170, 125);
+        Make_report.setPrefSize(170, 175);
         Make_report.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
         Make_report.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -96,7 +96,7 @@ public class Admin extends Application  {
             }
         });
         
-        Logout.setPrefSize(170, 150);
+        Logout.setPrefSize(170, 175);
         Logout.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.web("#bf1f21"), CornerRadii.EMPTY, Insets.EMPTY)));
         Logout.setBorder(new Border(new BorderStroke((javafx.scene.paint.Color.web("#79b5d9")), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         Logout.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
@@ -138,7 +138,7 @@ public class Admin extends Application  {
         Scene scene = new Scene(all);           
         stage.setScene(scene);
         stage.setMinWidth(700);
-        stage.setMinHeight(500);
+        stage.setMinHeight(700);
         stage.setTitle("Admin Screen");
         stage.setResizable(false);
         
