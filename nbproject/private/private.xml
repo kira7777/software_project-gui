@@ -4,7 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/programing/Project/software_project-gui/src/Officer/Officer.java</file>
+            <file>file:/E:/programing/Project/software_project-gui/src/login/Login.java</file>
+            <file>file:/E:/programing/Project/software_project-gui/src/Admin/Admin_Add.java</file>
             <file>file:/E:/programing/Project/software_project-gui/src/Admin/Admin.java</file>
+            <file>file:/E:/programing/Project/software_project-gui/src/Officer/Officer_View.java</file>
+            <file>file:/E:/programing/Project/software_project-gui/src/Admin/Admin_OfficerList.java</file>
         </group>
     </open-files>
 </project-private>
