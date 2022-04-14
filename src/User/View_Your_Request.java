@@ -41,13 +41,13 @@ import login.Login;
  * @author user
  */
 public class View_Your_Request extends Application {
-    Stage S1;
-    TableView table=new TableView();
+       Stage S1;
+        TableView table=new TableView();
     @Override
-        public void start(Stage stage) {
+         public void start(Stage stage) {
         
         GridPane all = new GridPane();
-
+        all.setHgap(10);
         
 // side btn section
         
@@ -55,14 +55,14 @@ public class View_Your_Request extends Application {
         section1.setPrefSize(170, 500);
 
         
-        Button View_my_family = new Button("View My Family\n" +"Members");
+      Button View_my_family = new Button("View My Family\n" +"Members");
         Button Make_request = new Button("Make a request\n" +"for Adding New\n" +"member");
         Button view_request = new Button("View Your\n" +"Requests");
         Button View_Correction  = new Button("View Correction\n" +"Requests");
         Button Logout = new Button("Logout");
         
         
-        View_my_family.setMinSize(170, 175);
+        View_my_family.setMinSize(170, 140);
         View_my_family.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
         View_my_family.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -74,7 +74,7 @@ public class View_Your_Request extends Application {
         });
         
         
-        Make_request.setMinSize(170, 175);
+        Make_request.setMinSize(170, 140);
         Make_request.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
         Make_request.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -85,7 +85,7 @@ public class View_Your_Request extends Application {
             }
         });
         
-        view_request.setMinSize(170, 175);
+        view_request.setMinSize(170, 140);
         view_request.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
         view_request.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -96,7 +96,7 @@ public class View_Your_Request extends Application {
             }
         });
         
-        View_Correction.setMinSize(170, 175);
+        View_Correction.setMinSize(170, 140);
         View_Correction.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
         View_Correction.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -107,7 +107,7 @@ public class View_Your_Request extends Application {
             }
         });
         
-        Logout.setMinSize(170, 175);
+        Logout.setMinSize(170, 160);
         Logout.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.web("#bf1f21"), CornerRadii.EMPTY, Insets.EMPTY)));
         Logout.setBorder(new Border(new BorderStroke((javafx.scene.paint.Color.web("#79b5d9")), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         Logout.setFont(Font.font("tahoma", FontWeight.BOLD, 15));
@@ -122,7 +122,6 @@ public class View_Your_Request extends Application {
 
         
         section1.getChildren().addAll(View_my_family,Make_request,view_request,View_Correction,Logout);
-        
 //second section
 
         VBox section2 = new VBox();
@@ -149,7 +148,7 @@ public class View_Your_Request extends Application {
         scrollPane.setMaxWidth(900);
         scrollPane.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollPane.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
-       
+        section2.setPadding(new Insets(20, 0, 50, 50));
         section2.getChildren().addAll(H,scrollPane);
        // section2.setAlignment(Pos.CENTER);
         
@@ -158,11 +157,10 @@ public class View_Your_Request extends Application {
         all.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.web("#a5cee5"), CornerRadii.EMPTY, Insets.EMPTY)));
 
         
-        Scene scene = new Scene(all);           
-        stage.setScene(scene);
-        stage.setMinWidth(700);
-        stage.setMinHeight(700);
-        stage.setTitle("user Screen");
+           
+        Scene scene = new Scene(all,800,700);           
+        stage.setScene(scene);;
+        stage.setTitle("User Screen");
         stage.setResizable(false);
         
         stage.show();
