@@ -245,7 +245,7 @@ public class Make_Request extends Application {
 
         
         Scene scene = new Scene(all,800,700);           
-        stage.setScene(scene);;
+        stage.setScene(scene);
         stage.setTitle("User Screen");
         stage.setResizable(false);
         
