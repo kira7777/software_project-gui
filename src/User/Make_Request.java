@@ -1,13 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMain.java to edit this template
  */
 package User;
 
-import Admin.Admin_Add;
-import Admin.Admin_OfficerList;
-import Admin.Make_Report;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -32,23 +28,21 @@ import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import login.Login;
-import User.View_Correction;
-import User.View_Your_Request;
-import User.View_Family_Members;
-import User.Make_Request;
 
 /**
  *
- * @author user
+ * @author dell
  */
-public class View_Correction extends Application {
-    Stage S1;
+public class Make_Request extends Application {
+    
+     Stage S1;
         TableView table=new TableView();
     @Override
          public void start(Stage stage) {
@@ -140,21 +134,7 @@ public class View_Correction extends Application {
         Label H=new Label("Correction Requests");
         H.setFont(Font.font("Garamond", FontWeight.BOLD, 30));
         H.setPadding(new Insets(5, 0, 0, 250));
-        table.setEditable(true);
-        TableColumn FristName =new TableColumn("ID");
-        TableColumn SecondName =new TableColumn("Name");
-        SecondName.setPrefWidth(500);
-        table.getColumns().addAll(FristName,SecondName);
-        table.setMinHeight(1000);
-        
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(table);
-        scrollPane.pannableProperty().set(true);
-        scrollPane.fitToWidthProperty().set(true);
-        scrollPane.fitToHeightProperty().set(true);
-        scrollPane.setPrefHeight(350);
-        scrollPane.setMaxWidth(900);
-        scrollPane.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+
         /////Name field//////
         HBox Name=new HBox(30);
         Label l1=new Label("Name : ");
@@ -258,7 +238,7 @@ public class View_Correction extends Application {
         NameField.getChildren().addAll(Name,area,state,Email,User);
         PassField.getChildren().addAll(S,Occupation,Address,mobile,password);
         horiz.getChildren().addAll(NameField,PassField);
-        section2.getChildren().addAll(H,scrollPane,horiz,B);
+        section2.getChildren().addAll(H,horiz,B);
         all.add(section1, 0, 0);
         all.add(section2, 1, 0);
         all.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.web("#a5cee5"), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -272,7 +252,6 @@ public class View_Correction extends Application {
         stage.show();
         S1=stage;
     }
-
     /**
      * @param args the command line arguments
      */
