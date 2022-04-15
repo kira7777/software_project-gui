@@ -125,7 +125,7 @@ public class View_Family_Members extends Application {
         section2.setPrefSize(530, 500);
         Label H=new Label("Family Members");
         H.setFont(Font.font("Garamond", FontWeight.BOLD, 30));
-        H.setPadding(new Insets(20, 0, 50, 200));
+        H.setPadding(new Insets(20, 0, 50, 180));
         table.setEditable(true);
         TableColumn FristName =new TableColumn("ID");
         TableColumn SecondName =new TableColumn("Name");
