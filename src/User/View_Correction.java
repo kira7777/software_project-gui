@@ -42,6 +42,7 @@ import User.View_Correction;
 import User.View_Your_Request;
 import User.View_Family_Members;
 import User.Make_Request;
+import javafx.scene.control.DatePicker;
 
 /**
  *
@@ -139,22 +140,24 @@ public class View_Correction extends Application {
         HBox horiz=new HBox(15);
         Label H=new Label("Correction Requests");
         H.setFont(Font.font("Garamond", FontWeight.BOLD, 30));
-        H.setPadding(new Insets(5, 0, 0, 250));
+        H.setPadding(new Insets(5, 0, 0, 200));
         table.setEditable(true);
         TableColumn FristName =new TableColumn("ID");
         TableColumn SecondName =new TableColumn("Name");
         SecondName.setPrefWidth(500);
         table.getColumns().addAll(FristName,SecondName);
-        table.setMinHeight(1000);
+        table.setMinHeight(800);
+        table.setMinWidth(900);
         
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(table);
         scrollPane.pannableProperty().set(true);
         scrollPane.fitToWidthProperty().set(true);
         scrollPane.fitToHeightProperty().set(true);
-        scrollPane.setPrefHeight(350);
+        scrollPane.setPrefHeight(300);
         scrollPane.setMaxWidth(900);
-        scrollPane.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrollPane.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
+        scrollPane.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
         /////Name field//////
         HBox Name=new HBox(30);
         Label l1=new Label("Name : ");
@@ -174,10 +177,17 @@ public class View_Correction extends Application {
         /////////////State//////////////////
         HBox state=new HBox(50);
         Label s1=new Label("State: ");
-        l2.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 16));
+        s1.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 16));
         ComboBox State=new ComboBox();
         State.setPrefWidth(150);
         state.getChildren().addAll(s1,State);
+        //////education///////////////
+        HBox Education=new HBox(20);
+        Label e1=new Label("Education: ");
+        e1.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 16));
+        ComboBox edu=new ComboBox();
+        edu.setPrefWidth(150);
+        Education.getChildren().addAll(e1,edu);
         //////email //////////
         HBox Email = new HBox(40);
         Label email =new Label("Email : ");
@@ -208,6 +218,7 @@ public class View_Correction extends Application {
         ///////////sex /////////////
         HBox S=new HBox(50);
         Label s =new Label("SEX :");
+        s.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 17));
         ToggleGroup tg = new ToggleGroup();
         RadioButton Male=new RadioButton("Male: ");
         RadioButton Female=new RadioButton("Female");
@@ -225,26 +236,32 @@ public class View_Correction extends Application {
         ///////////////////////////////////
         HBox Occupation =new HBox(10);
         Label O=new Label("Occupation : ");
-        ph.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 17));
+        O.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 17));
         TextField Occupat=new TextField();
         Occupat.setStyle("-fx-background-radius: 30px ;");
-        Occupat.setPromptText("Phone");
+        Occupat.setPromptText("Occupation");
         Occupat.setMaxWidth(300);
         Occupation.getChildren().addAll(O,Occupat);
         ///////////////////////////////////////
         HBox Address =new HBox(30);
         Label A=new Label("Address : ");
-        ph.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 17));
+        A.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 17));
         TextField Addr=new TextField();
         Addr.setStyle("-fx-background-radius: 30px ;");
-        Addr.setPromptText("Phone");
+        Addr.setPromptText("Address");
         Addr.setMaxWidth(300);
         Address.getChildren().addAll(A,Addr);
+        //////Date////////////////
+        HBox Dt =new HBox(30);
+        Label data=new Label("Date : ");
+        data.setFont(Font.font("Arial", FontWeight.LIGHT, FontPosture.ITALIC, 17));
+        DatePicker Date=new DatePicker();
+        Dt.getChildren().addAll(data,Date);
         //////////////////button///////
         HBox B=new HBox(100);
-        B.setPadding(new Insets(10, 0, 0, 80));
-        Button D=new Button("Delete Officer");
-        Button U=new Button("Update Officer");
+        B.setPadding(new Insets(10, 0, 0, 120));
+        Button D=new Button(" Reject ");
+        Button U=new Button(" Accept ");
         D.setStyle("-fx-background-radius: 300px ;-fx-background-color:Red; ");
         U.setStyle("-fx-background-radius: 300px ;-fx-background-color:Orange;");
         D.setMinWidth(120);
@@ -255,8 +272,8 @@ public class View_Correction extends Application {
         U.setTextFill(javafx.scene.paint.Color.BLACK);
         B.getChildren().addAll(D,U);
         ////////////////////////
-        NameField.getChildren().addAll(Name,area,state,Email,User);
-        PassField.getChildren().addAll(S,Occupation,Address,mobile,password);
+        NameField.getChildren().addAll(Name,area,state,Education,Email,User);
+        PassField.getChildren().addAll(S,Occupation,Address,Dt,mobile,password);
         horiz.getChildren().addAll(NameField,PassField);
         section2.getChildren().addAll(H,scrollPane,horiz,B);
         all.add(section1, 0, 0);
